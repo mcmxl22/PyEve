@@ -3,7 +3,7 @@
 """
 Auther: Micah McConnaughey
 PyEve Version 1
-Date: 07/13/2022
+Date: 07/27/2022
 Python 3.7
 """
 
@@ -36,8 +36,6 @@ class Ship:
         enter_ship = input('Enter the ship? ')
         if enter_ship == 'y':
             return True
-        else:
-            Ship.enter('')
     
     def exit(self):
         exit = input('Exit the ship? ')
@@ -56,9 +54,11 @@ class Tool:
 
 
 class Astroid:
-    def __init__(self, name, type):
+    def __init__(self, name, type, mass=10):
         self.name = name
         self.type = type
+        self.mass = mass
+
 
 class Ore:
     def __init__(self, type, quantity):
