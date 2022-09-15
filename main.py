@@ -1,23 +1,36 @@
-import PyEve as pe
-
-def exit_game():
-    """Exit game."""
-    pass
+from character import Person
+from Menu import Menu
+from ship import Ship
 
 
 def main():
     """Main function."""
-    player = pe.Player('')
-    ship = pe.Ship('AdVenture', 'Miner')
+
+    player = Person("Micah")
+    ship = Ship("Miner", "Venture")
+    menu = Menu.list_choices(
+        [
+            "Dock",
+            "Enter",
+            "Exit",
+            "Fly",
+            "Scan",
+            "Refuel",
+            "Repair",
+            "Sell",
+            "Buy",
+            "Quit",
+        ]
+    )
+
     print(f"Welcome to PyEve {player.name}!")
-    print(f'Here is your first ship, a {ship.name}. It is a {ship.type}.')
-    enter_ship = ship.enter()
+    print(f"Here is your first ship, a {ship.name}.")
+
+    enter_ship = ship.enter_ship()
+
     if enter_ship == True:
-        print(f'You are in your {ship.name}.')
-    else:
-        print(f'You are not in your {ship.name}.')
-        return enter_ship
+        print(f"You are now in the {ship.name}.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
