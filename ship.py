@@ -1,11 +1,17 @@
-class Ship:
+from dataclasses import dataclass
 
+
+@dataclass
+class Config:
+    """Configure ship information."""
+    ship_type = str
+    ship_name = str
+
+
+class Ship(Config):
+    """Define a ship"""
     in_ship = False
     armor = 10
-
-    def __init__(self, type, name) -> None:
-        self.type = type
-        self.name = name
 
     def enter_ship(self) -> bool:
         Ship.in_ship = True
