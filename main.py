@@ -1,31 +1,80 @@
-from character import Person
-from Menu import Menu
-from ship import Ship, Config
-
+from mining_laser import MiningLaser
+from asteroid import Asteroid, AsteroidBelt
+from spaceship import Spaceship
+from space_station import SpaceStation
+from user_account import UserAccount
 
 def main():
-    """Main function."""
+    # Initialize user account
+    user_account = UserAccount()
 
-    player = Person("John Doe")
-    Config.ship_name = "Venture"
-    Config.ship_type = "miner"
-    ship = Ship()
-    menu = Menu.list_choices(
-        [
-            "Exit",
-            "Enter",
-            "Quit"
-        ]
-    )
+    print("\nWelcome to Asteroid Miner!")
+    print("Please create a new account or log in.\n")
+    
+    while True:
+        print("\n1. Register new account")
+        print("2. Log in to existing account")
+        print("3. Exit")
 
-    print(f"Welcome to PyEve {player.name}!")
-    print(f"Here is your first ship, a {ship.ship_type}.")
+        account_action = input("\nChoose an option: ")
 
-    enter_ship = ship.enter_ship()
+        if account_action == '1':
+            user_account.register_account()
 
-    if enter_ship == True:
-        print(f"You are now in the {ship.ship_name}.")
+        elif account_action == '2':
+            if user_account.login():
+                break
+            else:
+                print("Invalid login credentials. Please try again.")
 
+        elif account_action == '3':
+            print("o7")
+            return
+
+        else:
+            print("Invalid command. Please enter a number between 1 and 3.")
+
+    # Initialize game objects
+    laser = MiningLaser(100, 5)
+    spaceship = Spaceship(500, laser)
+    station = SpaceStation(spaceship)
+    asteroid_belt = AsteroidBelt()
+
+    print("\nYou command a spaceship equipped with a mining laser.")
+    print("Your goal is to mine as much material as possible from asteroids.\n")
+    print("Here are the basic commands:")
+    print("  '1' - Mine: Undock from the space station and start mining an asteroid.")
+    print("  '2' - Return: Dock at the space station and unload your cargo.")
+    print("  '3' - Exit: Quit the game.\n")
+
+    while True:
+        print("\n1. Mine")
+        print("2. Return to station")
+        print("3. Exit")
+
+        command = input("\nChoose an option: ")
+
+        if command == '1':
+            # Undock spaceship from station
+            station.undock_ship()
+            if not spaceship.docked:
+                # Select asteroid and start mining
+                asteroid = asteroid_belt.select_asteroid()
+                spaceship.mine(asteroid)
+
+        elif command == '2':
+            # Dock spaceship at station and unload cargo
+            if spaceship.docked:
+                print("You must undock from the station first.")
+            else:
+                station.dock_ship()
+
+        elif command == '3':
+            print("o7")
+            break
+
+        else:
+            print("Invalid command. Please enter a number between 1 and 3.")
 
 if __name__ == "__main__":
     main()
