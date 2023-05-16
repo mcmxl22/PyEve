@@ -1,0 +1,26 @@
+class MiningLaser:
+    """Class representing a mining laser with certain power and cycle time."""
+
+    def __init__(self, power, cycle_time):
+        """
+        Initialize a MiningLaser instance.
+
+        Args:
+            power (int): The power of the mining laser.
+            cycle_time (int): The cycle time of the mining laser.
+        """
+        self.power = power
+        self.is_powered = False
+        self.cycle_time = cycle_time
+
+    def power_off(self):
+        """
+        Power off the mining laser.
+        """
+        self.is_powered = False
+
+    def power_on(self):
+        """
+        Power on the mining laser.
+        """
+        self.is_powered = True
