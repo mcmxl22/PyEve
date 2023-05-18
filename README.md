@@ -31,11 +31,8 @@ Running the Game
 
 To play the game, run the main.py script.
 
-css
-
-python main.py
 
 Future Work
 
-    Add more types of spaceships and mining lasers.
+    Add more asteroid belts with space between them.
     Add different kinds of asteroids with different materials.
