@@ -1,4 +1,4 @@
-# PyEveAsteroid Miner Game
+# Asteroid Miner Game
 Description
 
 Asteroid Miner is a simple text-based space mining simulation game. You command a spaceship equipped with a mining laser with the goal to mine as much material as possible from asteroids.
