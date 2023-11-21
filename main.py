@@ -9,8 +9,6 @@ def main():
     user_account = UserAccount()
     
     while True:
-        # Account action loop remains the same
-
         print("\nWelcome to Asteroid Miner!")
         print("Please create a new account or log in.\n")
         
