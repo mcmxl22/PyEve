@@ -3,19 +3,19 @@ from asteroid import Asteroid, AsteroidBelt
 from spaceship import Spaceship
 from space_station import SpaceStation
 from user_account import UserAccount
+import os
 
 def main():
-    # Initialize user account
     user_account = UserAccount()
     
     while True:
         print("\nWelcome to Asteroid Miner!")
-        print("Please create a new account or log in.\n")
+        print("Create a new account or log in.\n")
         
         while True:
-            print("1. Register new account")
-            print("2. Log in to existing account")
-            print("3. Exit")
+            options = ("1. Register", "2. Login", "3. Exit")
+            for i in options:
+                print(i)
 
             account_action = input("\nChoose an option: ")
 
@@ -26,14 +26,14 @@ def main():
                 if user_account.login():
                     break
                 else:
-                    print("Invalid login credentials. Please try again.")
+                    print("Invalid login. Try again.")
 
             elif account_action == '3':
                 print("o7")
                 return
 
             else:
-                print("Invalid command. Please enter a number between 1 and 3.")
+                print("Invalid command. Enter a number between 1 and 3.")
 
         # Initialize game objects
         laser = MiningLaser(100, 5)
@@ -42,39 +42,39 @@ def main():
         asteroid_belt = AsteroidBelt()
 
         print("\nYou command a spaceship equipped with a mining laser.")
-        print("Your goal is to mine as much material as possible from asteroids.\n")
+        print("Your goal is to mine as much material as possible.\n")
         print("Here are the basic commands:")
-        print("  '1' - Mine: Undock from the space station and start mining an asteroid.")
-        print("  '2' - Return: Dock at the space station and unload your cargo.")
-        print("  '3' - Exit: Quit the game.\n")
+        print("  '1' - Mine: Undock from the space station and start mining")
+        print("  '2' - Dock: Dock at the space station and unload your cargo.")
+        print("  '3' - Upgrade: Use carbon in a space station to increase your cargo capacity.")
+        print("  '4' - Exit: Quit game.\n")
 
         while True:
-            print("\n1. Mine")
-            print("2. Return to station")
-            print("3. Exit")
-
+            options = ("1. Mine", "2. Dock", "3. Upgrade", "4. Exit")
+            for i in options:
+                print(i)
             command = input("\nChoose an option: ")
 
             if command == '1':
-                # Undock spaceship from station
                 station.undock_ship()
                 if not spaceship.docked:
-                    # Select asteroid and start mining
                     asteroid = asteroid_belt.select_asteroid()
                     spaceship.mine(asteroid)
 
             elif command == '2':
-                # Dock spaceship at station and unload cargo
                 station.dock_ship()
-                # Print the cargo unloaded to the station
-                print("Cargo unloaded to the station: ", station.cargo_dock)
-
+                print("Cargo unloaded: ", station.cargo_dock)
+            
             elif command == '3':
+                station.upgrade_spaceship()
+
+            elif command == '4':
+                os.system('cls')
                 print("o7")
                 raise SystemExit
 
             else:
-                print("Invalid command. Please enter a number between 1 and 3.")
+                print("Invalid command. Enter a number between 1 and 4.")
 
 if __name__ == "__main__":
     main()
