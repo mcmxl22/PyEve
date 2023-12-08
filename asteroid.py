@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import random
 
 
@@ -82,10 +81,10 @@ class AsteroidBelt:
         """
         while True:
             try:
-                selected = int(input("Select an asteroid to mine: ")) - 1
+                selected = int(input("Select an asteroid: ")) - 1
                 if 0 <= selected < len(self.asteroids):
                     return self.asteroids[selected]
                 else:
-                    print("Invalid selection. Please try again.")
+                    print("Invalid selection. Try again.")
             except ValueError:
-                print("Invalid input. Please enter a number.")
+                print("Invalid input. Enter a number.")
